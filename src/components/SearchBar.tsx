@@ -12,10 +12,10 @@ const Input = styled.input`
 `
 
 interface PostSeacrhBarProps {
-
+  filterPosts(title: string): void
 }
 
-const SearchBar: React.FC<PostSeacrhBarProps> = () => {
+const SearchBar: React.FC<PostSeacrhBarProps> = ({filterPosts}) => {
   const [title, setTitle] = useState<string>('')
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -24,8 +24,7 @@ const SearchBar: React.FC<PostSeacrhBarProps> = () => {
 
   const keyPressHandler = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      console.log(title)
-      setTitle('')
+      filterPosts(title)
     }
   }
 

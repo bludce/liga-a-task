@@ -17,6 +17,7 @@ const App: React.FC = () => {
 
   const [posts, setPosts] = useState<IPost[]>([])
   const [users, setUsers] = useState<IUser[]>([])
+  const [filteredPosts, setfilteredPosts] = useState<IPost[]>([])
 
   useEffect(() => {
     Promise.all([
@@ -27,13 +28,26 @@ const App: React.FC = () => {
     .then(jsonObjects => {
       setPosts(jsonObjects[0])
       setUsers(jsonObjects[1])
+      setfilteredPosts(jsonObjects[0])
     });
   }, [])
 
+  const filterPosts = (filter: string): void => {
+    if (filter.length === 0) {
+      setfilteredPosts(posts)
+    } else {
+      const filterPost = filteredPosts.filter((post) => {
+        let postName = post.title.toLowerCase() + post.title.toLowerCase()
+        return postName.indexOf(filter.toLowerCase()) !== -1
+      })
+      setfilteredPosts(filterPost)
+    }
+  }
+
   return (
     <Section>
-      <SearchBar />
-      <List posts={posts} users={users} />
+      <SearchBar filterPosts={filterPosts}/>
+      <List posts={filteredPosts} users={users} />
     </Section>
   );
 }
