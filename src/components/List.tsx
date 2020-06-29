@@ -10,17 +10,21 @@ interface PostListProps {
 
 const List: React.FC<PostListProps> = ({posts, users}) => {
   
-  // console.log(posts[0].id)
+  if (posts.length === 0) {
+    return <Title>Ничего не найдено</Title>
+  }
+  
   return (
     <PostList>
       {posts.map(({id, userId, title, body}) => {
-        // const user = users.filter(({ id }) => id === userId)
-        // console.log(user.id)
+        const user = users.filter(({ id }) => id === userId)
+        const {name, username} = user[0]
+
         return (
         <Item key={id}>
           <Title>{title}</Title>
           <Body>{body}</Body>
-        <Published>Published: user.username </Published>
+        <Published>Published: {name} ({username}) </Published>
         </Item>
         )
       })}
