@@ -36,8 +36,8 @@ const App: React.FC = () => {
     if (filter.length === 0) {
       setfilteredPosts(posts)
     } else {
-      const filterPost = filteredPosts.filter((post) => {
-        let postName = post.title.toLowerCase() + post.title.toLowerCase()
+      const filterPost = posts.filter((post) => {
+        let postName = post.title.toLowerCase()
         return postName.indexOf(filter.toLowerCase()) !== -1
       })
       setfilteredPosts(filterPost)

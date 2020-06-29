@@ -20,12 +20,7 @@ const SearchBar: React.FC<PostSeacrhBarProps> = ({filterPosts}) => {
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(event.target.value)
-  }
-
-  const keyPressHandler = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      filterPosts(title)
-    }
+    filterPosts(title)
   }
 
   return (
@@ -34,7 +29,7 @@ const SearchBar: React.FC<PostSeacrhBarProps> = ({filterPosts}) => {
       value={title}
       type="text" 
       placeholder="Введите название"
-      onKeyPress={keyPressHandler}/>
+    />
   )
 }
 
