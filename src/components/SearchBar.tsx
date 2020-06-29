@@ -18,7 +18,7 @@ interface PostSeacrhBarProps {
 const SearchBar: React.FC<PostSeacrhBarProps> = () => {
   const [title, setTitle] = useState<string>('')
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(event.target.value)
   }
 
